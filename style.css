@@ -1,0 +1,410 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+/* ===================== VARIABLES GLOBALES ===================== */
+:root{
+  --rosa:#f8bbd0;
+  --magenta:#f06292;
+  --vino:#ad1457;
+  --texto:#3b2352;
+  --sombra:rgba(0,0,0,.08);
+  --card:#ffffff;
+}
+
+/* Reseteo básico y accesibilidad */
+*{box-sizing:border-box}
+html,body{height:100%}
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:.01ms!important;animation-iteration-count:1!important;transition:none!important;scroll-behavior:auto!important}
+}
+
+/* ===================== BASE ===================== */
+body{
+  margin:0;
+  font-family:'Montserrat',Arial,sans-serif;
+  background:linear-gradient(135deg,#fff0f6 0%, var(--rosa) 100%);
+  color:var(--texto);
+}
+
+/* ===================== BARRA / NAV ===================== */
+/* Fondo y borde del encabezado */
+header{
+  position:sticky; top:0; z-index:20;
+  background:linear-gradient(90deg,var(--rosa) 0%, var(--magenta) 100%);
+  border-bottom:2px solid var(--magenta);
+}
+
+/* Contenedor principal de la barra (grid) */
+.barra{
+  display:grid;
+  grid-template-columns:auto 1fr auto;  /* marca | menú | buscador */
+  align-items:center;
+  gap:16px;
+  padding:10px 16px;
+  max-width:1280px;
+  margin:0 auto;
+}
+
+/* Marca (logo + nombre) */
+.marca{display:flex; align-items:center; gap:8px}
+.logo{
+  height:40px; width:40px; border-radius:10px;
+  border:2px solid var(--magenta); background:#fff;
+  box-shadow:0 2px 8px var(--sombra);
+}
+.marca-nombre{font-weight:800; color:#fff; letter-spacing:.3px}
+
+/* Menú horizontal */
+.menu{
+  list-style:none; margin:0; padding:0;
+  display:flex; gap:8px; align-items:center; justify-content:flex-start;
+}
+.menu > li{position:relative}
+
+/* Botones de navegación y filtros */
+.boton-nav,
+.filtro,
+.menu > li > a,
+.menu > li > button{
+  display: inline-block;
+  min-width: 140px;
+  height: 44px;
+  line-height: 44px;
+  padding: 0 18px;
+  font-size: 1rem;
+  font-family: inherit;
+  font-weight: 600;
+  text-align: center;
+  border-radius: 22px;
+  background: #fff;
+  color: #d81b60;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px #f0629220;
+  margin: 0 4px;
+  vertical-align: middle;
+}
+.menu > li > a:hover,
+.menu > li > button:hover,
+.boton-nav:hover,
+.filtro:hover,
+.filtro.is-active{
+  background: #f06292;
+  color: #fff;
+  box-shadow: 0 4px 16px #f0629240;
+}
+
+/* Dropdown */
+.contenido-desplegable{
+  display:none; position:absolute; background:#fff; min-width:170px; top:46px; left:0;
+  border-radius:10px; box-shadow:0 8px 24px var(--sombra); padding:6px;
+}
+.contenido-desplegable li{list-style:none}
+.contenido-desplegable a, .contenido-desplegable button{
+  display:block; width:100%; text-align:left;
+  padding:10px 12px; border-radius:8px; border:0; background:transparent; cursor:pointer;
+  color:var(--vino); text-decoration:none; font-weight:600;
+}
+.contenido-desplegable a:hover, .contenido-desplegable button:hover{background:var(--rosa); color:#fff}
+.desplegable:hover .contenido-desplegable, .desplegable:focus-within .contenido-desplegable{display:block}
+
+/* Buscador */
+.buscador{display:flex; align-items:center; gap:8px; justify-content:flex-end}
+.buscador input{
+  width:320px; max-width:56vw;
+  padding:10px 12px; border-radius:18px; border:2px solid #fff;
+  outline:none; box-shadow:0 2px 8px var(--sombra);
+}
+.buscador button{
+  border:0; background:#fff; border-radius:50%; width:36px; height:36px; cursor:pointer;
+  box-shadow:0 2px 8px var(--sombra);
+}
+
+/* ===================== CONTENIDO / GRILLA ===================== */
+main{
+  max-width:1200px; margin:24px auto; padding:0 16px;
+}
+h2{color:var(--vino); margin:8px 0 12px 0; font-size:28px}
+
+/* Grilla de tarjetas */
+.grilla-productos{
+  display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+  gap:22px;
+}
+/* Tarjeta */
+.tarjeta-producto{
+  background:var(--card); border-radius:16px; border:1px solid #fff;
+  box-shadow:0 4px 20px var(--sombra);
+  padding:12px; cursor:pointer; transition:transform .15s ease, box-shadow .2s;
+}
+.tarjeta-producto:hover{transform:translateY(-4px); box-shadow:0 10px 26px var(--sombra)}
+.tarjeta-producto h3{margin:10px 8px 6px; font-size:16px; color:#1a1631}
+.precio{display:block; margin:0 8px 8px; color:#6c2b70; font-weight:800}
+
+/* Contenedor de imagen de la tarjeta */
+.contenedor-imagen{
+  position:relative; border-radius:12px; overflow:hidden; background:#fff; height:200px;
+  border:2px solid var(--rosa);
+}
+.contenedor-imagen img{
+  position:absolute; inset:0; width:100%; height:100%; object-fit:cover; transition:opacity .35s, transform .25s;
+}
+.contenedor-imagen .img-hover{opacity:0}
+.contenedor-imagen:hover .img-hover{opacity:1}
+.contenedor-imagen:hover .img-normal{transform:scale(1.05)}
+
+/* ===================== MODAL DE DETALLE ===================== */
+.modal{
+  display:none; position:fixed; inset:0; z-index:1000; background:rgba(0,0,0,.45);
+  justify-content:center; align-items:flex-start; padding:32px 16px; overflow:auto;
+}
+.modal-contenido{
+  background:#fff; border-radius:16px; width:min(1100px,98vw); padding:16px; position:center;
+  box-shadow:0 12px 36px rgba(0,0,0,.18);
+}
+.cerrar-modal{
+  position:absolute; right:12px; top:10px; border:0; background:#fff; border-radius:8px; width:36px; height:36px;
+  cursor:pointer; box-shadow:0 2px 8px var(--sombra); font-size:20px;
+}
+
+/* Layout interno del detalle */
+.detalle-producto{
+  display:grid; grid-template-columns: 120px 1fr 1fr; gap:16px;
+}
+
+/* Miniaturas */
+.galeria{display:flex; flex-direction:column; align-items:stretch; gap:6px}
+.miniaturas{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px; overflow:auto; max-height:540px}
+.miniaturas li{border:2px solid transparent; border-radius:8px; overflow:hidden; cursor:pointer}
+.miniaturas li.activa{border-color:var(--magenta)}
+.miniaturas img{display:block; width:100%; height:90px; object-fit:cover}
+.scroll-miniaturas{border:0; background:#fff; border-radius:10px; padding:6px; cursor:pointer; box-shadow:0 2px 8px var(--sombra)}
+.scroll-miniaturas:disabled{opacity:.4; cursor:default}
+
+/* Visor principal */
+.visor-imagen{position:relative; background:#fff; border:2px solid var(--rosa); border-radius:14px; min-height:540px; display:flex; align-items:center; justify-content:center}
+.visor-imagen img{max-width:100%; max-height:520px; width:auto; height:auto; border-radius:12px}
+.boton-slider{position:absolute; top:50%; transform:translateY(-50%); border:0; background:rgba(0,0,0,.35); color:#fff; width:36px; height:36px; border-radius:50%; cursor:pointer}
+#slider-anterior{left:10px} #slider-siguiente{right:10px}
+.contador-imagen{position:absolute; left:12px; top:12px; background:#fff; border-radius:12px; padding:4px 8px; font-size:12px; box-shadow:0 2px 8px var(--sombra)}
+
+/* Información a la derecha */
+.info{display:flex; flex-direction:column; gap:12px}
+.migas{font-size:14px; color:#6a5a9a}
+.migas a{color:#6a5a9a; text-decoration:none}
+#modal-titulo{font-size:28px; margin:0}
+
+.disponibilidad{display:flex; align-items:center; gap:10px}
+.disponibilidad .etiqueta{font-weight:800; color:#261a43}
+.chip{background:#e6eeff; color:#304ffe; padding:6px 10px; border-radius:12px; font-weight:700}
+
+.descripcion{color:#55476c}
+
+/* Precio unitario (se eliminó mayoreo) */
+.precio-unico{display:flex; align-items:center; gap:10px}
+.precio-unico .etiqueta{font-weight:800; color:#261a43}
+.precio-unico .valor{font-size:26px; font-weight:800; color:#25143f}
+
+/* Acciones */
+.acciones{display:flex; gap:10px; align-items:center}
+.boton-whatsapp{
+  background:linear-gradient(90deg,#25d366,#128c7e); color:#fff; text-decoration:none;
+  padding:12px 18px; border-radius:12px; font-weight:800; display:inline-block;
+}
+
+/* Relacionados */
+.relacionados h4{margin:8px 0}
+.fila-relacionados{display:grid; grid-template-columns:repeat(4,1fr); gap:10px}
+.tarjeta-relacionado{
+  display:flex; gap:10px; align-items:center; background:#fff; border:1px solid #eee; border-radius:12px; padding:8px; cursor:pointer;
+}
+.tarjeta-relacionado img{width:72px; height:72px; object-fit:cover; border-radius:8px}
+.tarjeta-relacionado .nombre-relacionado{font-weight:700; color:#1f1638; font-size:14px}
+
+/* ===================== PIE ===================== */
+footer{
+  text-align:center; padding:20px 0; background:var(--vino); color:#fff; margin-top:40px; letter-spacing:.5px;
+}
+
+/* ===================== RESPONSIVE ===================== */
+/* Móvil: apilar barra y ensanchar buscador */
+@media (max-width: 768px) {
+  .barra {
+    grid-template-columns: 1fr;       /* una columna */
+    gap: 12px;
+    justify-items: center;
+    padding: 10px;
+  }
+  .marca { justify-content: center; }
+  .menu { flex-wrap: wrap; justify-content: center; }
+  .buscador { width: 100%; justify-content: center; }
+  .buscador input { width: 90%; max-width: 100%; }
+}
+
+/* Ajustes de detalle para tablets y móviles */
+@media (max-width: 1024px){
+  .detalle-producto{grid-template-columns: 100px 1fr 1fr}
+  .visor-imagen{min-height:250px}
+  .miniaturas img{height:76px}
+}
+
+/* En móviles, el detalle se apila verticalmente */
+@media (max-width: 860px){
+  .detalle-producto{grid-template-columns: 1fr; }
+  .galeria{order:2; flex-direction:row; align-items:center}
+  .miniaturas{flex-direction:row; max-height:unset; overflow:auto}
+  .miniaturas img{width:80px; height:80px}
+  .scroll-miniaturas{display:none}
+  .visor-imagen{order:1}
+  .info{order:3}
+  .fila-relacionados{grid-template-columns:repeat(2,1fr)}
+}
+/* ====== DESKTOP: sin slider, imagen más grande ====== */
+@media (min-width: 1025px){
+  /* Cambiamos el grid del detalle a 2 columnas:
+     - la imagen ocupa 1.6 partes
+     - la info 1 parte  */
+  .detalle-producto{
+    grid-template-columns: 1.6fr 1fr !important;
+  }
+
+  /* Por si el slider sigue en el DOM: lo ocultamos
+     y evitamos que consuma espacio visual */
+  .galeria{ display: none !important; }
+
+  /* Hacemos que el visor no tenga altura fija
+     y que la imagen crezca a lo ancho */
+  .visor-imagen{
+    min-height: 0 !important;
+    height: auto;
+  }
+  .visor-imagen img{
+    width: 100%;
+    height: auto;
+    max-height: 78vh;      /* usa gran parte del alto de pantalla */
+  }
+
+  /* Le damos un poco más de ancho al modal para aprovechar la pantalla */
+  .modal-contenido{
+    width: min(1280px, 98vw);   /* antes era min(1100px,98vw) */
+  }
+}
+
+/* ====== MÓVIL: mantiene lo que ya funcionaba bien ====== */
+@media (max-width: 860px){
+  .detalle-producto{ grid-template-columns: 1fr; }
+  .visor-imagen{ min-height: 0; height: auto; }
+  .visor-imagen img{ width:100%; height:auto; max-height:75vh; }
+}
+/* ===== CENTRAR MEJOR EL MODAL Y SU CONTENIDO (DESKTOP) ===== */
+@media (min-width: 1025px){
+  /* 1) El modal se centra vertical y horizontalmente */
+  .modal{
+    justify-content: center !important;
+    align-items: center !important;   /* antes: flex-start */
+    padding: 24px;                    /* menos borde vacío */
+  }
+
+  /* 2) El contenedor interior respira y no se sale de la pantalla */
+  .modal-contenido{
+    width: min(1280px, 96vw);         /* un poco más ancho */
+    max-height: calc(100vh - 64px);   /* si es alto, aparece scroll interno */
+    overflow: auto;
+    padding: 24px 28px;               /* margen interior más parejo */
+  }
+
+  /* 3) Dos columnas, con la imagen grande y TODO alineado al centro */
+  .detalle-producto{
+    grid-template-columns: 1.6fr 1fr; /* imagen más ancha que la info */
+    align-items: center;              /* centra verticalmente ambas columnas */
+    gap: 24px;
+  }
+  .visor-imagen{ align-self: center; }
+  .info{ align-self: center; }
+
+  /* 4) La imagen ocupa el ancho disponible, sin huecos raros */
+  .visor-imagen{
+    min-height: 0;
+    height: auto;
+  }
+  .visor-imagen img{
+    width: 100%;
+    height: auto;
+    max-height: 78vh;                 /* grande pero sin salirse de la pantalla */
+    object-fit: contain;              /* no recorta la foto */
+  }
+
+  /* 5) Centrar también la fila de “relacionados” */
+  .fila-relacionados{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;          /* centrado horizontal */
+  }
+}
+
+/* Móvil se queda como estaba (ya se ve bien) */
+@media (max-width: 860px){
+  .detalle-producto{ grid-template-columns: 1fr; }
+  .visor-imagen{ min-height: 0; height: auto; }
+  .visor-imagen img{ width:100%; height:auto; max-height:75vh; }
+}
+/* ================== TAMAÑOS FIJOS (ajusta a tu gusto) ================== */
+:root{
+  --alto-tarjeta: 240px;   /* alto fijo de la imagen en cada tarjeta */
+  --alto-modal-desk: 520px;/* alto fijo de la imagen grande en PC */
+  --mini-w: 88px;          /* ancho/alto de miniaturas (si las usas) */
+  --mini-h: 88px;
+}
+
+/* --- TARJETAS: todas iguales --- */
+.contenedor-imagen{
+  height: var(--alto-tarjeta) !important;
+}
+.contenedor-imagen img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;   /* llena el cuadro, recorta si hace falta */
+}
+
+/* --- MODAL (PC): imagen grande con altura fija --- */
+@media (min-width: 1025px){
+  .detalle-producto{
+    grid-template-columns: 1.6fr 1fr !important; /* imagen grande + info */
+    align-items: center;
+  }
+  .galeria{ display: none; } /* si quitaste el slider, ocúltalo */
+  .visor-imagen{
+    min-height: 0 !important;
+    height: var(--alto-modal-desk) !important; /* marco fijo */
+  }
+  .visor-imagen img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;  /* NO recorta; puede dejar “barras” */
+    background: #fff;     /* color de fondo detrás de la foto */
+    border-radius: 12px;
+  }
+}
+
+/* --- MODAL (móvil): mantenemos lo que te funciona bien --- */
+@media (max-width: 1024px){
+  .detalle-producto{ grid-template-columns: 1fr; }
+  .visor-imagen{
+    min-height: 0 !important;
+    height: auto !important;
+  }
+  .visor-imagen img{
+    width: 100%;
+    height: auto;
+    max-height: 75vh;   /* ocupa gran parte de la pantalla */
+    object-fit: contain;
+  }
+}
+
+/* --- Miniaturas (si aún las usas) todas iguales --- */
+.miniaturas img{
+  width: var(--mini-w);
+  height: var(--mini-h);
+  object-fit: cover;
+}

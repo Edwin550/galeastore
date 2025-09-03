@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tienda</title>
+
+  <!-- Fuente (opcional) -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap">
+
+  <!-- Hoja de estilos principal -->
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+  <!--
+    ENCABEZADO / BARRA DE NAVEGACIÓN
+    - Marca, menú de categorías, enlace de contacto y buscador.
+    - En móvil se apila; en escritorio queda en una fila.
+  -->
+  <header>
+    <nav class="barra" role="navigation" aria-label="Navegación principal">
+      <div class="marca">
+        <img src="img/logo1.png" alt="Logo de la tienda" class="logo" width="64" height="64" decoding="async">
+        <span class="marca-nombre">Kawaii Makeup</span>
+      </div>
+
+      <ul class="menu" role="menubar">
+        <!-- Menú desplegable de categorías -->
+        <li class="desplegable" role="none">
+          <button class="boton-nav" type="button" aria-haspopup="true" aria-expanded="false">
+            Categorías
+          </button>
+          <ul class="contenido-desplegable" role="menu" aria-label="Categorías">
+            <li role="none"><button role="menuitem" class="filtro" data-categoria="maquillaje" type="button">Maquillaje</button></li>
+            <li role="none"><button role="menuitem" class="filtro" data-categoria="ropa" type="button">Ropa</button></li>
+            <li role="none"><button role="menuitem" class="filtro" data-categoria="zapatos" type="button">Zapatos</button></li>
+          </ul>
+        </li>
+
+        <!-- Ver todos -->
+        <li role="none">
+          <button role="menuitem" class="filtro" data-categoria="todos" type="button">Todos</button>
+        </li>
+
+        <!-- Enlaces de ejemplo -->
+        <li class="desplegable" role="none">
+          <button class="boton-nav" type="button" aria-haspopup="true" aria-expanded="false">Tienda</button>
+          <ul class="contenido-desplegable" role="menu" aria-label="Tienda">
+            <li role="none"><a role="menuitem" href="#">Sucursal 1</a></li>
+            <li role="none"><a role="menuitem" href="#">Sucursal 2</a></li>
+          </ul>
+        </li>
+
+        <!-- Contacto -->
+        <li role="none">
+          <a role="menuitem" href="#contacto">Contáctanos</a>
+        </li>
+      </ul>
+
+      <!-- Buscador general de productos -->
+      <form class="buscador" role="search" aria-label="Buscar productos">
+        <input id="entrada-busqueda" type="search" placeholder="¿Qué estás buscando?" aria-label="Buscar" />
+        <button type="submit" aria-label="Buscar">🔍</button>
+      </form>
+    </nav>
+  </header>
+
+  <!--
+    CONTENIDO PRINCIPAL
+    - Grilla de tarjetas (sin descripción visible).
+    - La descripción única de cada producto va en data-descripcion y solo aparece en el modal.
+  -->
+  <main>
+    <section id="productos">
+      <h2>Productos</h2>
+      <div class="grilla-productos">
+        <!-- Producto 1 -->
+        <article class="tarjeta-producto"
+          data-categoria="maquillaje"
+          data-imagenes="https://images.pexels.com/photos/3373745/pexels-photo-3373745.jpeg,https://images.pexels.com/photos/3373746/pexels-photo-3373746.jpeg"
+          data-precio="88"
+          data-descripcion="Labial rosa de larga duración, hidratante y vibrante.">
+          <div class="contenedor-imagen">
+            <img src="https://images.pexels.com/photos/3373745/pexels-photo-3373745.jpeg" alt="Labial Rosa" class="img-normal" loading="lazy" decoding="async">
+            <img src="https://images.pexels.com/photos/3373746/pexels-photo-3373746.jpeg" alt="Labial Rosa Hover" class="img-hover" loading="lazy" decoding="async">
+          </div>
+          <h3><strong>Labial Rosa</strong></h3>
+          <span class="precio">L88</span>
+        </article>
+        <!-- Producto 2 -->
+        <article class="tarjeta-producto"
+          data-categoria="maquillaje"
+          data-imagenes="https://images.pexels.com/photos/461213/pexels-photo-461213.jpeg,https://images.pexels.com/photos/461214/pexels-photo-461214.jpeg"
+          data-precio="49"
+          data-descripcion="Lip gloss con brillo natural y textura ligera.">
+          <div class="contenedor-imagen">
+            <img src="https://images.pexels.com/photos/461213/pexels-photo-461213.jpeg" alt="Lip Gloss" class="img-normal" loading="lazy" decoding="async">
+            <img src="https://images.pexels.com/photos/461214/pexels-photo-461214.jpeg" alt="Lip Gloss Hover" class="img-hover" loading="lazy" decoding="async">
+          </div>
+          <h3><strong>Lip Gloss</strong></h3>
+          <span class="precio">L49</span>
+        </article>
+        <!-- Producto 3 -->
+        <article class="tarjeta-producto"
+          data-categoria="maquillaje"
+          data-imagenes="https://images.pexels.com/photos/206434/pexels-photo-206434.jpeg,https://images.pexels.com/photos/206435/pexels-photo-206435.jpeg"
+          data-precio="86"
+          data-descripcion="Paleta de sombras con 12 tonos vibrantes.">
+          <div class="contenedor-imagen">
+            <img src="https://images.pexels.com/photos/206434/pexels-photo-206434.jpeg" alt="Paleta de Sombras" class="img-normal" loading="lazy" decoding="async">
+            <img src="https://images.pexels.com/photos/206435/pexels-photo-206435.jpeg" alt="Paleta de Sombras Hover" class="img-hover" loading="lazy" decoding="async">
+          </div>
+          <h3><strong>Paleta de Sombras</strong></h3>
+          <span class="precio">L86</span>
+        </article>
+        <!-- Producto 4 -->
+        <article class="tarjeta-producto"
+          data-categoria="maquillaje"
+          data-imagenes="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg,https://images.pexels.com/photos/415830/pexels-photo-415830.jpeg"
+          data-precio="46"
+          data-descripcion="Iluminador en polvo para un brillo natural.">
+          <div class="contenedor-imagen">
+            <img src="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg" alt="Iluminador" class="img-normal" loading="lazy" decoding="async">
+            <img src="https://images.pexels.com/photos/415830/pexels-photo-415830.jpeg" alt="Iluminador Hover" class="img-hover" loading="lazy" decoding="async">
+          </div>
+          <h3><strong>Iluminador</strong></h3>
+          <span class="precio">L46</span>
+        </article>
+        <!-- Producto 5 -->
+        <article class="tarjeta-producto"
+          data-categoria="maquillaje"
+          data-imagenes="https://images.pexels.com/photos/461387/pexels-photo-461387.jpeg,https://images.pexels.com/photos/461388/pexels-photo-461388.jpeg"
+          data-precio="55"
+          data-descripcion="Rubor compacto para mejillas radiantes.">
+          <div class="contenedor-imagen">
+            <img src="https://images.pexels.com/photos/461387/pexels-photo-461387.jpeg" alt="Rubor Compacto" class="img-normal" loading="lazy" decoding="async">
+            <img src="https://images.pexels.com/photos/461388/pexels-photo-461388.jpeg" alt="Rubor Compacto Hover" class="img-hover" loading="lazy" decoding="async">
+          </div>
+          <h3><strong>Rubor Compacto</strong></h3>
+          <span class="precio">L55</span>
+        </article>
+        <!-- Producto 6 -->
+        <article class="tarjeta-producto"
+          data-categoria="maquillaje"
+          data-imagenes="https://images.pexels.com/photos/3373747/pexels-photo-3373747.jpeg,https://images.pexels.com/photos/3373748/pexels-photo-3373748.jpeg"
+          data-precio="60"
+          data-descripcion="Corrector líquido de alta cobertura.">
+          <div class="contenedor-imagen">
+            <img src="https://images.pexels.com/photos/3373747/pexels-photo-3373747.jpeg" alt="Corrector Líquido" class="img-normal" loading="lazy" decoding="async">
+            <img src="https://images.pexels.com/photos/3373748/pexels-photo-3373748.jpeg" alt="Corrector Líquido Hover" class="img-hover" loading="lazy" decoding="async">
+          </div>
+          <h3><strong>Corrector Líquido</strong></h3>
+          <span class="precio">L60</span>
+        </article>
+        <!-- Producto 7 -->
+        <article class="tarjeta-producto"
+          data-categoria="ropa"
+          data-imagenes="https://images.pexels.com/photos/532220/pexels-photo-532220.jpeg,https://images.pexels.com/photos/532221/pexels-photo-532221.jpeg"
+          data-precio="120"
+          data-descripcion="Blusa elegante de seda color pastel.">
+          <div class="contenedor-imagen">
+            <img src="https://images.pexels.com/photos/532220/pexels-photo-532220.jpeg" alt="Blusa Elegante" class="img-normal" loading="lazy" decoding="async">
+            <img src="https://images.pexels.com/photos/532221/pexels-photo-532221.jpeg" alt="Blusa Elegante Hover" class="img-hover" loading="lazy" decoding="async">
+          </div>
+          <h3><strong>Blusa Elegante</strong></h3>
+          <span class="precio">L120</span>
+        </article>
+        <!-- Producto 8 -->
+        <article class="tarjeta-producto"
+          data-categoria="ropa"
+          data-imagenes="https://images.pexels.com/photos/1488463/pexels-photo-1488463.jpeg,https://images.pexels.com/photos/1488464/pexels-photo-1488464.jpeg"
+          data-precio="135"
+          data-descripcion="Vestido floral con corte moderno.">
+          <div class="contenedor-imagen">
+            <img src="https://images.pexels.com/photos/1488463/pexels-photo-1488463.jpeg" alt="Vestido Floral" class="img-normal" loading="lazy" decoding="async">
+            <img src="https://images.pexels.com/photos/1488464/pexels-photo-1488464.jpeg" alt="Vestido Floral Hover" class="img-hover" loading="lazy" decoding="async">
+          </div>
+          <h3><strong>Vestido Floral</strong></h3>
+          <span class="precio">L135</span>
+        </article>
+        <!-- Producto 9 -->
+        <article class="tarjeta-producto"
+          data-categoria="ropa"
+          data-imagenes="https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg,https://images.pexels.com/photos/2983465/pexels-photo-2983465.jpeg"
+          data-precio="110"
+          data-descripcion="Pantalón casual cómodo para cualquier ocasión.">
+          <div class="contenedor-imagen">
+            <img src="https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg" alt="Pantalón Casual" class="img-normal" loading="lazy" decoding="async">
+            <img src="https://images.pexels.com/photos/2983465/pexels-photo-2983465.jpeg" alt="Pantalón Casual Hover" class="img-hover" loading="lazy" decoding="async">
+          </div>
+          <h3><strong>Pantalón Casual</strong></h3>
+          <span class="precio">L110</span>
+        </article>
+        <!-- Producto 10 -->
+        <article class="tarjeta-producto"
+          data-categoria="ropa"
+          data-imagenes="https://images.pexels.com/photos/532222/pexels-photo-532222.jpeg,https://images.pexels.com/photos/532223/pexels-photo-532223.jpeg"
+          data-precio="140"
+          data-descripcion="Falda plisada de tela ligera.">
+          <div class="contenedor-imagen">
+            <img src="https://images.pexels.com/photos/532222/pexels-photo-532222.jpeg" alt="Falda Plisada" class="img-normal" loading="lazy" decoding="async">
+            <img src="https://images.pexels.com/photos/532223/pexels-photo-532223.jpeg" alt="Falda Plisada Hover" class="img-hover" loading="lazy" decoding="async">
+          </div>
+          <h3><strong>Falda Plisada</strong></h3>
+          <span class="precio">L140</span>
+        </article>
+        <!-- Producto 11 -->
+        <article class="tarjeta-producto"
+          data-categoria="ropa"
+          data-imagenes="https://images.pexels.com/photos/1488465/pexels-photo-1488465.jpeg,https://images.pexels.com/photos/1488466/pexels-photo-1488466.jpeg"
+          data-precio="130"
+          data-descripcion="Chaqueta denim clásica para toda ocasión.">
+          <div class="contenedor-imagen">
+            <img src="https://images.pexels.com/photos/1488465/pexels-photo-1488465.jpeg" alt="Chaqueta Denim" class="img-normal" loading="lazy" decoding="async">
+            <img src="https://images.pexels.com/photos/1488466/pexels-photo-1488466.jpeg" alt="Chaqueta Denim Hover" class="img-hover" loading="lazy" decoding="async">
+          </div>
+          <h3><strong>Chaqueta Denim</strong></h3>
+          <span class="precio">L130</span>
+        </article>
+        <!-- Producto 12 -->
+        <article class="tarjeta-producto"
+          data-categoria="zapatos"
+          data-imagenes="https://images.pexels.com/photos/19090/pexels-photo.jpg,https://images.pexels.com/photos/298863/pexels-photo-298863.jpeg"
+          data-precio="150"
+          data-descripcion="Zapatillas urbanas cómodas y modernas.">
+          <div class="contenedor-imagen">
+            <img src="https://images.pexels.com/photos/19090/pexels-photo.jpg" alt="Zapatillas Urbanas" class="img-normal" loading="lazy" decoding="async">
+            <img src="https://images.pexels.com/photos/298863/pexels-photo-298863.jpeg" alt="Zapatillas Urbanas Hover" class="img-hover" loading="lazy" decoding="async">
+          </div>
+          <h3><strong>Zapatillas Urbanas</strong></h3>
+          <span class="precio">L150</span>
+        </article>
+        <!-- Producto 13 -->
+        <article class="tarjeta-producto"
+          data-categoria="zapatos"
+          data-imagenes="https://images.pexels.com/photos/2983466/pexels-photo-2983466.jpeg,https://images.pexels.com/photos/2983467/pexels-photo-2983467.jpeg"
+          data-precio="132"
+          data-descripcion="Sandalias elegantes con detalles dorados.">
+          <div class="contenedor-imagen">
+            <img src="https://images.pexels.com/photos/2983466/pexels-photo-2983466.jpeg" alt="Sandalias Elegantes" class="img-normal" loading="lazy" decoding="async">
+            <img src="https://images.pexels.com/photos/2983467/pexels-photo-2983467.jpeg" alt="Sandalias Elegantes Hover" class="img-hover" loading="lazy" decoding="async">
+          </div>
+          <h3><strong>Sandalias Elegantes</strong></h3>
+          <span class="precio">L132</span>
+        </article>
+        <!-- Producto 14 -->
+        <article class="tarjeta-producto"
+          data-categoria="zapatos"
+          data-imagenes="https://images.pexels.com/photos/19091/pexels-photo.jpg,https://images.pexels.com/photos/19092/pexels-photo.jpg"
+          data-precio="160"
+          data-descripcion="Botines modernos para cualquier ocasión.">
+          <div class="contenedor-imagen">
+            <img src="https://images.pexels.com/photos/19091/pexels-photo.jpg" alt="Botines Modernos" class="img-normal" loading="lazy" decoding="async">
+            <img src="https://images.pexels.com/photos/19092/pexels-photo.jpg" alt="Botines Modernos Hover" class="img-hover" loading="lazy" decoding="async">
+          </div>
+          <h3><strong>Botines Modernos</strong></h3>
+          <span class="precio">L160</span>
+        </article>
+        <!-- Producto 15 -->
+        <article class="tarjeta-producto"
+          data-categoria="zapatos"
+          data-imagenes="https://images.pexels.com/photos/2983468/pexels-photo-2983468.jpeg,https://images.pexels.com/photos/2983469/pexels-photo-2983469.jpeg"
+          data-precio="145"
+          data-descripcion="Tacones rosados con plataforma cómoda.">
+          <div class="contenedor-imagen">
+            <img src="https://images.pexels.com/photos/2983468/pexels-photo-2983468.jpeg" alt="Tacones Rosados" class="img-normal" loading="lazy" decoding="async">
+            <img src="https://images.pexels.com/photos/2983469/pexels-photo-2983469.jpeg" alt="Tacones Rosados Hover" class="img-hover" loading="lazy" decoding="async">
+          </div>
+          <h3><strong>Tacones Rosados</strong></h3>
+          <span class="precio">L145</span>
+        </article>
+        <!-- Producto 16 -->
+        <article class="tarjeta-producto"
+          data-categoria="zapatos"
+          data-imagenes="https://images.pexels.com/photos/2983470/pexels-photo-2983470.jpeg,https://images.pexels.com/photos/2983471/pexels-photo-2983471.jpeg"
+          data-precio="155"
+          data-descripcion="Sandalias de verano frescas y ligeras.">
+          <div class="contenedor-imagen">
+            <img src="https://images.pexels.com/photos/2983470/pexels-photo-2983470.jpeg" alt="Sandalias Verano" class="img-normal" loading="lazy" decoding="async">
+            <img src="https://images.pexels.com/photos/2983471/pexels-photo-2983471.jpeg" alt="Sandalias Verano Hover" class="img-hover" loading="lazy" decoding="async">
+          </div>
+          <h3><strong>Sandalias Verano</strong></h3>
+          <span class="precio">L155</span>
+        </article>
+      </div>
+    </section>
+
+    <section id="contacto" style="display:none"></section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Mi Página Web. Todos los derechos reservados.</p>
+  </footer>
+
+  <!--
+    MODAL DE DETALLE
+    - Toma título, imágenes, precio y descripción desde la tarjeta (data-*).
+    - La descripción viene de data-descripcion (no se muestra en la tarjeta).
+  -->
+  <div id="modal-producto" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-titulo" aria-describedby="modal-descripcion">
+    <div class="modal-contenido detalle-producto">
+      <button class="cerrar-modal" type="button" aria-label="Cerrar">×</button>
+
+     
+      <!-- Visor principal -->
+      <div class="visor-imagen">
+        <button class="boton-slider" id="slider-anterior" type="button" aria-label="Imagen anterior">‹</button>
+        <img id="modal-imagen" src="" alt="" width="640" height="640" decoding="async">
+        <button class="boton-slider" id="slider-siguiente" type="button" aria-label="Imagen siguiente">›</button>
+        <span class="contador-imagen" id="contador-imagen">1/1</span>
+      </div>
+
+      <!-- Información del producto -->
+      <section class="info">
+        <nav class="migas" aria-label="Ruta de navegación">
+          <a href="#">Inicio</a> <span>›</span>
+          <span id="miga-categoria">Categoría</span> <span>›</span>
+          <strong id="miga-nombre"></strong>
+        </nav>
+
+        <h3 id="modal-titulo"></h3>
+
+        <div class="disponibilidad">
+          <span class="etiqueta">Disponibilidad:</span>
+          <span class="chip" id="chip-stock">Consultar</span>
+        </div>
+
+        <p id="modal-descripcion" class="descripcion"></p>
+
+        <div class="precio-unico">
+          <span class="etiqueta">Precio:</span>
+          <span class="valor" id="precio-unitario">L0</span>
+        </div>
+
+        <div class="acciones">
+          <a id="enlace-whatsapp" class="boton-whatsapp" target="_blank" rel="noopener">Consultar por WhatsApp</a>
+        </div>
+
+        <div class="relacionados">
+          <h4>También te puede interesar</h4>
+          <div class="fila-relacionados" id="fila-relacionados"></div>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- Lógica JS principal -->
+  
+  <script src="scripts/main.js" defer>
+
+
+
+  </script>
+  <script>
+  // Cierra cualquier menú desplegable al hacer clic fuera de él
+  document.addEventListener('click', function(e) {
+    document.querySelectorAll('.desplegable').forEach(function(drop) {
+      // Si el menú está abierto y el click NO fue dentro del menú ni del botón
+      if (drop.querySelector('.contenido-desplegable')?.style.display === 'block' ||
+          drop.matches(':hover') || drop.matches(':focus-within')) {
+        if (!drop.contains(e.target)) {
+          drop.querySelector('.contenido-desplegable').style.display = 'none';
+        }
+      }
+    });
+  });
+
+  // Opcional: vuelve a mostrar el menú al hacer hover o focus
+  document.querySelectorAll('.desplegable').forEach(function(drop) {
+    drop.addEventListener('mouseenter', function() {
+      drop.querySelector('.contenido-desplegable').style.display = 'block';
+    });
+    drop.addEventListener('mouseleave', function() {
+      drop.querySelector('.contenido-desplegable').style.display = 'none';
+    });
+    drop.addEventListener('focusin', function() {
+      drop.querySelector('.contenido-desplegable').style.display = 'block';
+    });
+    drop.addEventListener('focusout', function() {
+      drop.querySelector('.contenido-desplegable').style.display = 'none';
+    });
+  });
+</script>
+</body>
+</html>
